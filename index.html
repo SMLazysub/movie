@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>SM Lazysub - Кино Сан</title>
-<script src="https://telegram.org"></script>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
 body { background-color: #0f0f0f; color: #ffffff; padding-bottom: 30px; }
@@ -33,12 +32,21 @@ body { background-color: #0f0f0f; color: #ffffff; padding-bottom: 30px; }
 <div class="movie-grid" id="movieGrid"><div class="loading">Кинонуудыг ачаалж байна...</div></div>
 
 <script>
-if (window.Telegram && window.Telegram.WebApp) { window.Telegram.WebApp.expand(); }
+const tgScript = document.createElement('script');
+tgScript.src = ['https:', '', 'telegram.org', 'js', 'telegram-web-app.js'].join('/');
+tgScript.onload = () => { if (window.Telegram && window.Telegram.WebApp) window.Telegram.WebApp.expand(); };
+document.head.appendChild(tgScript);
 
-const u1 = "https:" + "//docs." + "://google.com";
-const u2 = "2PACX-1vQcypn9JnnLmqj6THxIzIJQ07qWnSENkdoOa0qskD1AJWI3EbJoXNq4EpTi1HZvK_vDhTz9Bt4U8_N4";
-const u3 = "/pub?gid=0&single=true&output=csv";
-const CSV_URL = u1 + u2 + u3;
+const CSV_URL = [
+  'https:',
+  '',
+  '://google.com',
+  'spreadsheets',
+  'd',
+  'e',
+  '2PACX-1vQcypn9JnnLmqj6THxIzIJQ07qWnSENkdoOa0qskD1AJWI3EbJoXNq4EpTi1HZvK_vDhTz9Bt4U8_N4',
+  'pub?gid=0&single=true&output=csv'
+].join('/');
 
 let allMovies = [];
 let activeCategory = "Бүгд";
